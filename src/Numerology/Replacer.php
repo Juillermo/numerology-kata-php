@@ -2,6 +2,7 @@
 
 namespace Numerology;
 
+use Numerology\ReplacementGenerator\AnEqualAmountOfOnesAsTheNumberToTheLeft;
 use Numerology\ReplacementGenerator\AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft;
 use Numerology\ReplacementGenerator\TwoTens;
 
@@ -17,7 +18,8 @@ class Replacer
                     $replacement = $replacementGenerator->generate($array, $i);
                     break;
                 case 2:
-                    $replacement =  array_fill(0, $array[$i - 1], 1);
+                    $replacementGenerator = new AnEqualAmountOfOnesAsTheNumberToTheLeft();
+                    $replacement =  $replacementGenerator->generate($array, $i);
                     break;
                 case 6:
                     $replacementGenerator = new AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft();
