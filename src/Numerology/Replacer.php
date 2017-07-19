@@ -4,6 +4,7 @@ namespace Numerology;
 
 use Numerology\ReplacementGenerator\AnEqualAmountOfOnesAsTheNumberToTheLeft;
 use Numerology\ReplacementGenerator\AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft;
+use Numerology\ReplacementGenerator\DoNotReplace;
 use Numerology\ReplacementGenerator\TwoTens;
 
 class Replacer
@@ -26,7 +27,8 @@ class Replacer
                     $replacement = $replacementGenerator->generate($array, $i);
                     break;
                 default:
-                    $replacement = [$value];
+                    $replacementGenerator = new DoNotReplace();
+                    $replacement = $replacementGenerator->generate($array, $i);
                     break;
             }
             $replaced = array_merge($replaced, $replacement);
