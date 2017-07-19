@@ -2,6 +2,8 @@
 
 namespace Numerology;
 
+use Numerology\ReplacementGenerator\AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft;
+
 class Replacer
 {
     public function replace($array)

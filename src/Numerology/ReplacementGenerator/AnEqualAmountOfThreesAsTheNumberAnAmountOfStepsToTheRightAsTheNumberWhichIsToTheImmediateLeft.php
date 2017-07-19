@@ -1,6 +1,8 @@
 <?php
 
-namespace Numerology;
+namespace Numerology\ReplacementGenerator;
+
+use Numerology\ReplacementGenerator;
 
 class AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft implements ReplacementGenerator
 {
