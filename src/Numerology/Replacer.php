@@ -12,13 +12,10 @@ class Replacer
                     array_splice($array, $i, 1, [10, 10]);
                     break;
                 case 2:
-                    $array_sub = $this->fillArray($array[$i - 1], 1);
-                    array_splice($array, $i, 1, $array_sub);
+                    array_splice($array, $i, 1, $this->fillArray($array[$i - 1], 1));
                     break;
-
                 case 6:
-                    $array_sub = $this->fillArray($array[$i+$array[$i-1]], 3);
-                    array_splice($array, $i, 1, $array_sub);
+                    array_splice($array, $i, 1, $this->fillArray($array[$i+$array[$i-1]], 3));
                     break;
             }
         }
