@@ -2,7 +2,7 @@
 
 namespace Numerology;
 
-class AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft
+class AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft implements ReplacementGenerator
 {
     /**
      * @param $array
