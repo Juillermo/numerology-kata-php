@@ -9,7 +9,8 @@ class Replacer
         foreach($array as $i => $value){
             switch ($value) {
                 case 9:
-                    array_splice($array, $i, 1, [10, 10]);
+                    $replacement = [10, 10];
+                    $array = $this->replacePositionWith($array, $i, $replacement);
                     break;
                 case 2:
                     array_splice($array, $i, 1, $this->fillArray($array[$i - 1], 1));
@@ -34,5 +35,17 @@ class Replacer
             $array_sub[] = $value;
         }
         return $array_sub;
+    }
+
+    /**
+     * @param array $array
+     * @param int $i
+     * @param array $replacement
+     * @return array
+     */
+    private function replacePositionWith($array, $i, $replacement)
+    {
+        array_splice($array, $i, 1, $replacement);
+        return $array;
     }
 }
