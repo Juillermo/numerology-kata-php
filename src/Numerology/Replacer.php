@@ -12,13 +12,6 @@ class Replacer
     /** @var \Numerology\ReplacementGenerator[] */
     private $generators = [];
 
-    public function __construct()
-    {
-        $this->registerReplacementGenerator(9, new TwoTens());
-        $this->registerReplacementGenerator(2, new AnEqualAmountOfOnesAsTheNumberToTheLeft());
-        $this->registerReplacementGenerator(6, new AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft());
-    }
-
     /**
      * @param $array
      * @return array
