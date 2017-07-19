@@ -13,10 +13,12 @@ class Replacer
                     $array = $this->replacePositionWith($array, $i, $replacement);
                     break;
                 case 2:
-                    array_splice($array, $i, 1, $this->fillArray($array[$i - 1], 1));
+                    $replacement = $this->fillArray($array[$i - 1], 1);
+                    $array = $this->replacePositionWith($array, $i, $replacement);
                     break;
                 case 6:
-                    array_splice($array, $i, 1, $this->fillArray($array[$i+$array[$i-1]], 3));
+                    $replacement = $this->fillArray($array[$i + $array[$i - 1]], 3);
+                    $array = $this->replacePositionWith($array, $i, $replacement);
                     break;
             }
         }
