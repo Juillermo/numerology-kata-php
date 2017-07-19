@@ -14,9 +14,9 @@ class Replacer
 
     public function __construct()
     {
-        $this->generators[9] = new TwoTens();
-        $this->generators[2] = new AnEqualAmountOfOnesAsTheNumberToTheLeft();
-        $this->generators[6] = new AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft();
+        $this->registerReplacementGenerator(9, new TwoTens());
+        $this->registerReplacementGenerator(2, new AnEqualAmountOfOnesAsTheNumberToTheLeft());
+        $this->registerReplacementGenerator(6, new AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft());
     }
 
     /**
@@ -32,6 +32,15 @@ class Replacer
 
         }
         return $replaced;
+    }
+
+    /**
+     * @param $number
+     * @param $generator
+     */
+    public function registerReplacementGenerator($number, $generator)
+    {
+        $this->generators[$number] = $generator;
     }
 
     /**
