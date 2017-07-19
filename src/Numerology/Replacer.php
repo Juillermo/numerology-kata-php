@@ -6,23 +6,26 @@ class Replacer
 {
     public function replace($array)
     {
+        $replaced = [];
         foreach($array as $i => $value){
             switch ($value) {
                 case 9:
                     $replacement = [10, 10];
-                    $array = $this->replacePositionWith($array, $i, $replacement);
                     break;
                 case 2:
                     $replacement = $this->fillArray($array[$i - 1], 1);
-                    $array = $this->replacePositionWith($array, $i, $replacement);
                     break;
                 case 6:
                     $replacement = $this->fillArray($array[$i + $array[$i - 1]], 3);
-                    $array = $this->replacePositionWith($array, $i, $replacement);
+                    break;
+                default:
+                    $replacement = [$value];
                     break;
             }
+            $replaced = array_merge($replaced, $replacement);
+
         }
-        return $array;
+        return $replaced;
     }
 
     /**
@@ -37,17 +40,5 @@ class Replacer
             $array_sub[] = $value;
         }
         return $array_sub;
-    }
-
-    /**
-     * @param array $array
-     * @param int $i
-     * @param array $replacement
-     * @return array
-     */
-    private function replacePositionWith($array, $i, $replacement)
-    {
-        array_splice($array, $i, 1, $replacement);
-        return $array;
     }
 }
