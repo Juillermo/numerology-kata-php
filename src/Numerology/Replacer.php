@@ -16,7 +16,7 @@ class Replacer
                     $replacement =  array_fill(0, $array[$i - 1], 1);
                     break;
                 case 6:
-                    $replacement = array_fill(0, $array[$i + $array[$i - 1]], 3);
+                    $replacement = $this->generateReplacement($array, $i);
                     break;
                 default:
                     $replacement = [$value];
@@ -26,5 +26,15 @@ class Replacer
 
         }
         return $replaced;
+    }
+
+    /**
+     * @param $array
+     * @param $i
+     * @return array
+     */
+    private function generateReplacement($array, $i)
+    {
+        return array_fill(0, $array[$i + $array[$i - 1]], 3);
     }
 }
