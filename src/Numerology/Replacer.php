@@ -9,31 +9,41 @@ use Numerology\ReplacementGenerator\TwoTens;
 
 class Replacer
 {
+    /** @var \Numerology\ReplacementGenerator[] */
+    private $generators = [];
+
+    public function __construct()
+    {
+        $this->generators[9] = new TwoTens();
+        $this->generators[2] = new AnEqualAmountOfOnesAsTheNumberToTheLeft();
+        $this->generators[6] = new AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft();
+    }
+
+    /**
+     * @param $array
+     * @return array
+     */
     public function replace($array)
     {
         $replaced = [];
-        foreach($array as $i => $value){
-            switch ($value) {
-                case 9:
-                    $replacementGenerator = new TwoTens();
-                    $replacement = $replacementGenerator->generate($array, $i);
-                    break;
-                case 2:
-                    $replacementGenerator = new AnEqualAmountOfOnesAsTheNumberToTheLeft();
-                    $replacement =  $replacementGenerator->generate($array, $i);
-                    break;
-                case 6:
-                    $replacementGenerator = new AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft();
-                    $replacement = $replacementGenerator->generate($array, $i);
-                    break;
-                default:
-                    $replacementGenerator = new DoNotReplace();
-                    $replacement = $replacementGenerator->generate($array, $i);
-                    break;
-            }
+        foreach ($array as $i => $value) {
+            $replacement = $this->getReplacementFor($value)->generate($array, $i);
             $replaced = array_merge($replaced, $replacement);
 
         }
         return $replaced;
+    }
+
+    /**
+     * @param $value
+     * @return \Numerology\ReplacementGenerator
+     */
+    private function getReplacementFor($value)
+    {
+        if (array_key_exists($value, $this->generators)) {
+            return $this->generators[$value];
+        }
+
+        return new DoNotReplace();
     }
 }
