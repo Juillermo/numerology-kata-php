@@ -3,6 +3,7 @@
 namespace Numerology;
 
 use Numerology\ReplacementGenerator\AnEqualAmountOfThreesAsTheNumberAnAmountOfStepsToTheRightAsTheNumberWhichIsToTheImmediateLeft;
+use Numerology\ReplacementGenerator\TwoTens;
 
 class Replacer
 {
@@ -12,7 +13,8 @@ class Replacer
         foreach($array as $i => $value){
             switch ($value) {
                 case 9:
-                    $replacement = [10, 10];
+                    $replacementGenerator = new TwoTens();
+                    $replacement = $replacementGenerator->generate($array, $i);
                     break;
                 case 2:
                     $replacement =  array_fill(0, $array[$i - 1], 1);
